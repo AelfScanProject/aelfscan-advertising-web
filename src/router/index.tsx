@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Navigate, RouteObject, RouterProvider, createHashRouter } from 'react-router-dom';
+import { Navigate, RouteObject, RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import DashboardLayout from '@/layouts/dashboard';
 import AuthGuard from '@/router/components/auth-guard';
@@ -32,7 +32,10 @@ export default function Router() {
 
   const routes = [LoginRoute, asyncRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];
 
-  const router = createHashRouter(routes as unknown as RouteObject[]);
+  // const router = createHashRouter(routes as unknown as RouteObject[]);
+  const router = createBrowserRouter(routes as unknown as RouteObject[], {
+    basename: '/ads',
+  });
 
   return <RouterProvider router={router} />;
 }

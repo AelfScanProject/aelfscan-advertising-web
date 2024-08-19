@@ -75,7 +75,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   );
 
   /**
-   * tab dropdown下拉选
+   * tab dropdown
    */
   const menuItems = useMemo<MenuProps['items']>(
     () => [
@@ -171,7 +171,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   );
 
   /**
-   * 当前显示dorpdown的tab
+   * Currently display the dorpdown tab
    */
   const onOpenChange = (open: boolean, tab: KeepAliveTab) => {
     if (open) {
@@ -182,7 +182,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   };
 
   /**
-   * tab样式
+   * tab style
    */
   const calcTabStyle: (tab: KeepAliveTab) => CSSProperties = useCallback(
     (tab) => {
@@ -207,7 +207,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   );
 
   /**
-   * 渲染单个tab
+   * Render a single tab
    */
   const renderTabLabel = useCallback(
     (tab: KeepAliveTab) => {
@@ -264,14 +264,14 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   );
 
   /**
-   * 所有tab
+   * all tab
    */
 
   const tabItems = useMemo(() => {
     return tabs?.map((tab) => ({
       label: renderTabLabel(tab),
       key: tab.key,
-      closable: tabs.length > 1, // 保留一个
+      closable: tabs.length > 1,
       children: (
         <div ref={tabContentRef} key={tab.timeStamp}>
           {tab.children}
@@ -281,14 +281,14 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   }, [tabs, renderTabLabel]);
 
   /**
-   * 拖拽结束事件
+   *
    */
   const onDragEnd: OnDragEndResponder = ({ destination, source }) => {
-    // 拖拽到非法非 droppable区域
+    // Drag to an illegal non-droppable area
     if (!destination) {
       return;
     }
-    // 原地放下
+    // Drop in place
     if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
@@ -300,7 +300,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   };
 
   /**
-   * 渲染 tabbar
+   * render tabbar
    */
   const { themeLayout } = useSettings();
   const { colorBorder, colorBgElevated } = useThemeToken();
@@ -373,7 +373,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   };
 
   /**
-   * 路由变化时，滚动到指定tab
+   * When the route changes, scroll to the specified tab
    */
   useEffect(() => {
     if (!scrollContainer || !scrollContainer.current) {
@@ -390,7 +390,7 @@ export default function MultiTabs({ offsetTop = false }: Props) {
   }, [activeTabRoutePath, tabs]);
 
   /**
-   * scrollContainer 监听wheel事件
+   * scrollContainer
    */
   useEffect(() => {
     function handleMouseWheel(event: WheelEvent) {
@@ -439,15 +439,14 @@ const StyledMultiTabs = styled.div`
     }
   }
 
-  /* 隐藏滚动条 */
   .hide-scrollbar {
     overflow: scroll;
     flex-shrink: 0;
-    scrollbar-width: none; /* 隐藏滚动条 Firefox */
-    -ms-overflow-style: none; /* 隐藏滚动条 IE/Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .hide-scrollbar::-webkit-scrollbar {
-    display: none; /* 隐藏滚动条 Chrome/Safari/Opera */
+    display: none;
   }
 `;

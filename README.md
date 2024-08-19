@@ -2,26 +2,11 @@
 <br> 
 <br>
 <img src="./src/assets/images/logo.png" height="140" />
-<h1> Slash Admin </h1>
+<h1> aelfscan AD management background </h1>
 <p style="font-size: 14px">
-  Slash Admin is a modern admin dashboard template built with React 18, Vite, Ant Design, and TypeScript. It is designed to help developers quickly create powerful admin management systems.
+  aelfscan AD management background is a modern admin dashboard template built with React 18, Vite, Ant Design, and TypeScript. It is designed to help developers quickly create powerful admin management systems.
 </p>
 </div>
-
-**English** | [中文](./README.zh-CN.md)
-
-##  Sponsor
-<div style="display: flex; gap: 50px"> 
-  <img style="width:300px" src="https://d3george.github.io/github-static/pay/weixin.jpg" >
-  <img style="width:300px" src="https://d3george.github.io/github-static/pay/buymeacoffee.png" />
-</div>
-
-## Preview
-+ https://admin.slashspaces.com/
-
-|![login.png](https://d3george.github.io/github-static/slash-admin/login.jpeg)|![login_dark.png](https://d3george.github.io/github-static/slash-admin/login_dark.jpeg)
-| ----------------------------------------------------------------- | ------------------------------------------------------------------- |
-|![analysis.png](https://d3george.github.io/github-static/slash-admin/analysis.png)|![workbench.png](https://d3george.github.io/github-static/slash-admin/workbench.png)
 
 ## Features
 
@@ -39,16 +24,8 @@
 - State management using Zustand.
 - Data fetching using React-Query.
 
-## Document
-[Document](https://docs-admin.slashspaces.com/)
 
 ## Quick Start
-
-### Get the Project Code
-
-```bash
-git clone https://github.com/d3george/slash-admin.git
-```
 
 ### Install Dependencies
 

@@ -9,25 +9,25 @@ import type { RouteMeta } from '#/router';
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 /**
- * 返回当前路由Meta信息
+ * Return Meta information about the current route
  */
 export function useCurrentRouteMeta() {
   // const pathname = usePathname();
   const { push } = useRouter();
 
-  // 获取路由组件实例
+  // Get the routing component instance
   const children = useOutlet();
 
-  // 获取所有匹配的路由
+  // Get all matching routes
   const matchs = useMatches();
 
-  // 获取拍平后的路由菜单
+  // Get the routing menu after the pat is flattened
   const flattenedRoutes = useFlattenedRoutes();
 
   const [currentRouteMeta, setCurrentRouteMeta] = useState<RouteMeta>();
 
   useEffect(() => {
-    // 获取当前匹配的路由
+    // Gets the current matched route
     const lastRoute = matchs.at(-1);
     if (!lastRoute) return;
 
@@ -58,16 +58,16 @@ export function useCurrentRouteMeta() {
 export const replaceDynamicParams = (menuKey: string, params: Params<string>) => {
   let replacedPathName = menuKey;
 
-  // 解析路由路径中的参数名称
+  // Parses the parameter names in the route path
   const paramNames = menuKey.match(/:\w+/g);
 
   if (paramNames) {
     paramNames.forEach((paramName) => {
-      // 去掉冒号，获取参数名称
+      // Remove the colon and get the parameter name
       const paramKey = paramName.slice(1);
-      // 检查params对象中是否有这个参数
+      // Check whether this parameter exists in the params object
       if (params[paramKey]) {
-        // 使用params中的值替换路径中的参数
+        // Replace the parameters in the path with the values in params
         replacedPathName = replacedPathName.replace(paramName, params[paramKey]!);
       }
     });

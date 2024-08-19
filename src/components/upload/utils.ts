@@ -15,7 +15,7 @@ const FORMAT_IMG = ['jpg', 'jpeg', 'gif', 'bmp', 'png', 'svg'];
 const FORMAT_VIDEO = ['m4v', 'avi', 'mpg', 'mp4', 'webm'];
 
 /**
- * 获取文件格式
+ *
  * @param fileName
  */
 export function getFileFormat(fileName: string | undefined) {
@@ -61,7 +61,7 @@ export function getFileFormat(fileName: string | undefined) {
 }
 
 /**
- * 获取文件缩略图
+ *
  * @param fileName
  */
 export function getFileThumb(fileName: string | undefined) {

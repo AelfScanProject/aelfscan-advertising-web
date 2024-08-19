@@ -33,7 +33,7 @@
       "forgetFormTitle": "Reset password",
 
       "signInPrimaryTitle": "Hi, Welcome Back",
-      "signInSecondTitle": "Backstage management system",
+      "signInSecondTitle": "Advertising Backstage management system",
       "signInTitle": "",
       "signInDesc": "Enter your personal details and get started!",
       "policy": "I agree to the xxx Privacy Policy",
@@ -134,6 +134,8 @@
       "blank": "Blank",
       "calendar": "Calendar",
       "kanban": "Kanban",
+      "text_advertising": "Text advertising",
+      "banner_advertising": "Banner advertising",
       "error": {
         "index": "Error Page",
         "403": "403",

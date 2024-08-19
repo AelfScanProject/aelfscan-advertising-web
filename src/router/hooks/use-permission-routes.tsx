@@ -12,7 +12,7 @@ import { Permission } from '#/entity';
 import { BasicStatus, PermissionType } from '#/enum';
 import { AppRouteObject } from '#/router';
 
-// 使用 import.meta.glob 获取所有路由组件
+// Use import.meta-.glob to get all the routing components
 const entryPath = '/src/pages';
 const pages = import.meta.glob('/src/pages/**/*.tsx');
 export const pagesSelect = Object.entries(pages).map(([path]) => {
@@ -23,7 +23,7 @@ export const pagesSelect = Object.entries(pages).map(([path]) => {
   };
 });
 
-// 构建绝对路径的函数
+// A function that builds the absolute path
 function resolveComponent(path: string) {
   return pages[`${entryPath}${path}`];
 }
@@ -32,7 +32,7 @@ function resolveComponent(path: string) {
  * return routes about permission
  */
 export function usePermissionRoutes() {
-  // 切换回静态路由
+  // Switch back to the static route
   // return useMemo(() => {
   //   return getRoutesFromModules();
   // }, []);

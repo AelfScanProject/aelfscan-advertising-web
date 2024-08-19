@@ -13,7 +13,7 @@ function App() {
       <AntdApp>
         <MotionLazy>
           <Helmet>
-            <title>Slash Admin</title>
+            <title>Advertising Admin</title>
             <link rel="icon" href={Logo} />
           </Helmet>
 

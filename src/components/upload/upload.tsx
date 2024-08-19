@@ -4,7 +4,6 @@ import { ItemRender } from 'antd/es/upload/interface';
 import { useThemeToken } from '@/theme/hooks';
 
 import { StyledUpload } from './styles';
-import UploadIllustration from './upload-illustration';
 import UploadListItem from './upload-list-item';
 
 import type { UploadProps } from 'antd';
@@ -29,9 +28,7 @@ export function Upload({ thumbnail = false, ...other }: Props) {
     <StyledUpload $thumbnail={thumbnail}>
       <Dragger {...other} itemRender={itemRender(thumbnail)}>
         <div className="opacity-100 hover:opacity-80">
-          <p className="m-auto max-w-[200px]">
-            <UploadIllustration />
-          </p>
+          <p className="m-auto max-w-[200px]">{/* <UploadIllustration /> */}</p>
           <Typography>
             <Title level={5} className="mt-4">
               Drop or Select file

@@ -1,3 +1,5 @@
+import { TablePaginationConfig } from 'antd';
+
 import { BasicStatus, PermissionType } from './enum';
 
 export interface UserToken {
@@ -51,4 +53,8 @@ export interface Role {
   order?: number;
   desc?: string;
   permission?: Permission[];
+}
+
+export interface TableParams {
+  pagination?: TablePaginationConfig;
 }

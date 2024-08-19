@@ -49,7 +49,6 @@ export default function CalendarEventForm({
   const [form] = Form.useForm();
 
   useEffect(() => {
-    // 当 initValues 改变时，手动更新表单的值
     const { color = COLORS[0], ...others } = initValues;
     form.setFieldsValue({ ...others, color });
   }, [initValues, form]);

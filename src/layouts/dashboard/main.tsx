@@ -35,7 +35,7 @@ const Main = forwardRef<HTMLDivElement, Props>(({ offsetTop = false }, ref) => {
   }
 
   return (
-    <Content ref={ref} style={mainStyle} className="flex overflow-auto">
+    <Content ref={ref} style={mainStyle} className="mb-10 flex overflow-auto">
       <div
         className={`m-auto h-full w-full flex-grow sm:p-2 ${
           themeStretch ? '' : 'xl:max-w-screen-xl'
