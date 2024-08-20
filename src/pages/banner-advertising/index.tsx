@@ -15,6 +15,12 @@ import {
   TableProps,
 } from 'antd';
 import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import localeData from 'dayjs/plugin/localeData';
+import weekday from 'dayjs/plugin/weekday';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
+import weekYear from 'dayjs/plugin/weekYear';
 import { useCallback, useEffect, useState } from 'react';
 
 import advertisingService from '@/api/services/advertisingService';
@@ -25,6 +31,13 @@ import { advertisingCounts, BannerAdvertisingLabels } from '@/utils/contant';
 import getColumns from './columnConfig';
 
 import { TableParams } from '#/entity';
+
+dayjs.extend(customParseFormat);
+dayjs.extend(advancedFormat);
+dayjs.extend(weekday);
+dayjs.extend(localeData);
+dayjs.extend(weekOfYear);
+dayjs.extend(weekYear);
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
