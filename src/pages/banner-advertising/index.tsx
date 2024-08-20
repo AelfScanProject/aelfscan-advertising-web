@@ -46,6 +46,7 @@ export interface IBannerAdvertisingItem {
   adsBannerId: string;
   id: string;
   image: string;
+  mobileImage: string;
   text: string;
   clickLink: string;
   labels: Array<string>;
@@ -111,13 +112,20 @@ export default function Page() {
     setConfirmLoading(true);
     console.log(values, 'values');
     const originLogo = values.image[0];
+    const originMobileImage = values.mobileImage[0];
     let image = '';
+    let mobileImage = '';
     try {
-      if (originLogo.url) {
+      if (originLogo.url && originMobileImage.url) {
         image = originLogo.url;
+        mobileImage = originMobileImage.url;
       } else {
-        const uploadFile = await awsUploadFile(originLogo.originFileObj as File);
-        image = uploadFile;
+        const [pcUrl, mobileUrl] = await Promise.all([
+          awsUploadFile(originLogo.originFileObj as File),
+          awsUploadFile(originMobileImage.originFileObj as File),
+        ]);
+        image = pcUrl;
+        mobileImage = mobileUrl;
       }
     } catch (error) {
       message.error('aws upload error');
@@ -131,6 +139,7 @@ export default function Page() {
       endTime,
       image,
       adsBannerId,
+      mobileImage,
     };
     delete data.dateRange;
     try {
@@ -185,6 +194,8 @@ export default function Page() {
     const regexFilename = /[^/]+$/;
     const matchFilename = adsItem.image.match(regexFilename);
     const fullFilename = matchFilename ? matchFilename[0] : null;
+    const matchFilenameMobile = adsItem.mobileImage.match(regexFilename);
+    const fullFilenameMobile = matchFilenameMobile ? matchFilenameMobile[0] : null;
 
     form.setFieldsValue({
       ...adsItem,
@@ -196,6 +207,16 @@ export default function Page() {
               name: fullFilename,
               status: 'done',
               url: adsItem.image,
+            },
+          ]
+        : [],
+      mobileImage: adsItem.mobileImage
+        ? [
+            {
+              uid: '-1',
+              name: fullFilenameMobile,
+              status: 'done',
+              url: adsItem.mobileImage,
             },
           ]
         : [],
@@ -321,7 +342,7 @@ export default function Page() {
             />
           </Form.Item>
           <Form.Item
-            label="image"
+            label="PC Image"
             name="image"
             valuePropName="fileList"
             getValueFromEvent={(e) => {
@@ -329,7 +350,18 @@ export default function Page() {
             }}
             rules={[{ required: true, message: 'Please upload image!' }]}
           >
-            <Upload accept="image/*" thumbnail={false} maxCount={1} name="single" />
+            <Upload accept="image/*" thumbnail maxCount={1} name="single" />
+          </Form.Item>
+          <Form.Item
+            label="Mobile Image"
+            name="mobileImage"
+            valuePropName="fileList"
+            getValueFromEvent={(e) => {
+              return Array.isArray(e.fileList) ? e.fileList : [];
+            }}
+            rules={[{ required: true, message: 'Please upload image!' }]}
+          >
+            <Upload accept="image/*" thumbnail maxCount={1} name="single" />
           </Form.Item>
           <Form.Item
             label="link"

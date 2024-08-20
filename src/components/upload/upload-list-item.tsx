@@ -22,11 +22,12 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
   const [imgThumbUrl, setImgThumbUrl] = useState('');
 
   useEffect(() => {
-    console.log(file, 'file2222');
+    console.log(file, format, 'file2222');
     if (['done', 'error'].includes(file.status!) && file.url) {
       setImgThumbUrl(file.url);
     } else if (['done', 'error'].includes(file.status!) && format === 'img') {
       setImgThumbUrl(getBlobUrl(file.originFileObj!));
+      console.log(getBlobUrl(file.originFileObj!), 'getBlobUrl(file.originFileObj!)');
     }
   }, [file, format]);
 
@@ -45,8 +46,8 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
       style={{ width: 80, height: 80, marginTop: '8px', marginRight: '8px' }}
     >
       <Tooltip title={name}>
-        {format === 'img' ? (
-          <Image src={imgThumbUrl} preview={false} width={40} height={40} />
+        {format === 'img' || format === 'webp' ? (
+          <Image src={imgThumbUrl} width={40} height={40} />
         ) : (
           <SvgIcon icon={thumb} size={40} />
         )}
@@ -65,8 +66,8 @@ export default function UploadListItem({ file, actions, thumbnail = false }: Pro
       }}
       style={{ marginTop: '8px' }}
     >
-      {format === 'img' ? (
-        <Image src={imgThumbUrl} preview={false} width={32} height={32} />
+      {format === 'img' || format === 'webp' ? (
+        <Image src={imgThumbUrl} width={32} height={32} />
       ) : (
         <SvgIcon icon={thumb} size={32} />
       )}

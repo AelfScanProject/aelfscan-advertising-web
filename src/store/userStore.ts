@@ -4,12 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
 import userService, { SignInReq } from '@/api/services/userService';
+import { APP_HOMEPAGE } from '@/utils/contant';
 import { getItem, removeItem, setItem } from '@/utils/storage';
 
 import { UserInfo, UserToken } from '#/entity';
 import { StorageEnum } from '#/enum';
-
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 type UserStore = {
   userInfo: Partial<UserInfo>;
@@ -61,7 +60,7 @@ export const useSignIn = () => {
       const { user, accessToken, refreshToken } = res;
       setUserToken({ accessToken, refreshToken });
       setUserInfo(user);
-      navigatge(HOMEPAGE, { replace: true });
+      navigatge(APP_HOMEPAGE, { replace: true });
     } catch (err) {
       message.warning({
         content: err.message,

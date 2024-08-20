@@ -7,8 +7,7 @@ import Character6 from '@/assets/images/characters/character_6.png';
 import MotionContainer from '@/components/animate/motion-container';
 import { varBounce } from '@/components/animate/variants/bounce';
 import { useThemeToken } from '@/theme/hooks';
-
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+import { APP_HOMEPAGE } from '@/utils/contant';
 
 export default function Page404() {
   const {
@@ -107,7 +106,7 @@ export default function Page404() {
           </m.div>
 
           <NavLink
-            to={HOMEPAGE}
+            to={APP_HOMEPAGE}
             style={{ background: colorTextBase, color: colorBgBase }}
             className="rounded-md p-4"
           >

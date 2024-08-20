@@ -8,11 +8,10 @@ import Overlay2 from '@/assets/images/background/overlay_2.jpg';
 import LocalePicker from '@/components/locale-picker';
 import { useUserToken } from '@/store/userStore';
 import { useThemeToken } from '@/theme/hooks';
+import { APP_HOMEPAGE } from '@/utils/contant';
 
 import LoginForm from './LoginForm';
 import { LoginStateProvider } from './providers/LoginStateProvider';
-
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 function Login() {
   const { t } = useTranslation();
@@ -22,7 +21,7 @@ function Login() {
   // Determine whether the user has permission
   if (token.accessToken) {
     // If authorized, go to the home page
-    return <Navigate to={HOMEPAGE} replace />;
+    return <Navigate to={APP_HOMEPAGE} replace />;
   }
 
   const gradientBg = Color(colorBgElevated).alpha(0.9).toString();

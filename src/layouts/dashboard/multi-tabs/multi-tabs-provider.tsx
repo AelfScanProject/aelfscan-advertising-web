@@ -11,6 +11,7 @@ import {
 
 import { useCurrentRouteMeta, useRouter } from '@/router/hooks';
 import { replaceDynamicParams } from '@/router/hooks/use-current-route-meta';
+import { APP_HOMEPAGE } from '@/utils/contant';
 
 import type { RouteMeta } from '#/router';
 
@@ -28,7 +29,6 @@ type MultiTabsContextType = {
   closeRight: (path: string) => void;
   refreshTab: (path: string) => void;
 };
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 const MultiTabsContext = createContext<MultiTabsContextType>({
   tabs: [],
@@ -101,7 +101,7 @@ export function MultiTabsProvider({ children }: PropsWithChildren) {
    */
   const closeAll = useCallback(() => {
     setTabs([]);
-    push(HOMEPAGE);
+    push(APP_HOMEPAGE);
   }, [push]);
 
   /**

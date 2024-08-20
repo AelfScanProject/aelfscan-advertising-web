@@ -7,10 +7,9 @@ import MotionContainer from '@/components/animate/motion-container';
 import { varBounce } from '@/components/animate/variants/bounce';
 import { useRouter } from '@/router/hooks';
 import { useThemeToken } from '@/theme/hooks';
+import { APP_HOMEPAGE } from '@/utils/contant';
 
 import type { FallbackProps } from 'react-error-boundary';
-
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 export default function PageError({ error, resetErrorBoundary }: FallbackProps) {
   const { colorBgBase, colorTextBase, colorPrimary, colorPrimaryActive } = useThemeToken();
@@ -19,7 +18,7 @@ export default function PageError({ error, resetErrorBoundary }: FallbackProps) 
 
   const goHome = () => {
     resetErrorBoundary();
-    replace(HOMEPAGE);
+    replace(APP_HOMEPAGE);
   };
   return (
     <div>

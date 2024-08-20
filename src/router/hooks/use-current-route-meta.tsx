@@ -2,12 +2,13 @@ import { isEmpty } from 'ramda';
 import { useEffect, useState } from 'react';
 import { Params, useMatches, useOutlet } from 'react-router-dom';
 
+import { APP_HOMEPAGE } from '@/utils/contant';
+
 import { useFlattenedRoutes } from './use-flattened-routes';
 import { useRouter } from './use-router';
 
 import type { RouteMeta } from '#/router';
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 /**
  * Return Meta information about the current route
  */
@@ -44,7 +45,7 @@ export function useCurrentRouteMeta() {
       }
       setCurrentRouteMeta({ ...matchedRouteMeta });
     } else {
-      push(HOMEPAGE);
+      push(APP_HOMEPAGE);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchs]);
