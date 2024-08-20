@@ -3,12 +3,13 @@ import axios, { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
 
 import { t } from '@/locales/i18n';
 import userStore from '@/store/userStore';
+import { APP_BASE_API } from '@/utils/contant';
 
 import { Result } from '#/api';
 import { ResultEnum } from '#/enum';
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_API,
+  baseURL: APP_BASE_API,
   timeout: 50000,
   headers: { 'Content-Type': 'application/json;charset=utf-8' },
 });

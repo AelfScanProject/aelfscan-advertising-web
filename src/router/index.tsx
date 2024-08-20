@@ -5,10 +5,10 @@ import DashboardLayout from '@/layouts/dashboard';
 import AuthGuard from '@/router/components/auth-guard';
 import { usePermissionRoutes } from '@/router/hooks';
 import { ErrorRoutes } from '@/router/routes/error-routes';
+import { APP_HOMEPAGE } from '@/utils/contant';
 
 import { AppRouteObject } from '#/router';
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 const LoginRoute: AppRouteObject = {
   path: '/login',
   Component: lazy(() => import('@/pages/sys/login/Login')),
@@ -27,7 +27,10 @@ export default function Router() {
         <DashboardLayout />
       </AuthGuard>
     ),
-    children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...permissionRoutes],
+    children: [
+      { index: true, element: <Navigate to={APP_HOMEPAGE} replace /> },
+      ...permissionRoutes,
+    ],
   };
 
   const routes = [LoginRoute, asyncRoutes, ErrorRoutes, PAGE_NOT_FOUND_ROUTE];
