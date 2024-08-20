@@ -15,6 +15,13 @@ import {
   TableProps,
 } from 'antd';
 import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import localeData from 'dayjs/plugin/localeData';
+import dayjsPluginUTC from 'dayjs/plugin/utc';
+import weekday from 'dayjs/plugin/weekday';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
+import weekYear from 'dayjs/plugin/weekYear';
 import { useCallback, useEffect, useState } from 'react';
 
 import advertisingService from '@/api/services/advertisingService';
@@ -26,8 +33,17 @@ import getColumns from './columnConfig';
 
 import { TableParams } from '#/entity';
 
+dayjs.extend(dayjsPluginUTC);
+
 const { Option } = Select;
 const { RangePicker } = DatePicker;
+
+dayjs.extend(customParseFormat);
+dayjs.extend(advancedFormat);
+dayjs.extend(weekday);
+dayjs.extend(localeData);
+dayjs.extend(weekOfYear);
+dayjs.extend(weekYear);
 
 const formItemLayout = {
   labelCol: {
@@ -110,7 +126,6 @@ export default function Page() {
   const { awsUploadFile } = useAWSUploadService();
   const onFinish = async (values: any) => {
     setConfirmLoading(true);
-    console.log(values, 'values');
     const originLogo = values.logo[0];
     let logo = '';
     try {
@@ -181,7 +196,6 @@ export default function Page() {
     });
     setAdsId(params.adsId);
     const adsItem = data.list[0];
-
     const dateRange = adsItem.startTime ? [dayjs(adsItem.startTime), dayjs(adsItem.endTime)] : [];
     const regexFilename = /[^/]+$/;
     const matchFilename = adsItem.logo.match(regexFilename);
