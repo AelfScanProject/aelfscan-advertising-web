@@ -41,9 +41,7 @@ export default function TopAuthor() {
               <span>{faker.person.fullName()}</span>
               <div className="flex items-center  text-gray">
                 <Iconify icon="icon-park-solid:like" size={14} />
-                <span className="ml-2">
-                  {faker.number.float({ min: 3, max: 9, multipleOf: 3 })}k
-                </span>
+                <span className="ml-2">{faker.number.float({ min: 3, max: 9 })}k</span>
               </div>
             </div>
 
