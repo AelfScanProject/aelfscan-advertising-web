@@ -398,7 +398,7 @@ const OTHERS_PERMISSION = [
     parentId: '',
     label: 'sys.menu.banner_advertising',
     name: 'banner-advertising',
-    icon: 'solar:clipboard-bold-duotone',
+    icon: 'solar:widget-5-bold-duotone',
     type: PermissionType.MENU,
     route: 'banner-advertising',
     component: '/banner-advertising/index.tsx',
