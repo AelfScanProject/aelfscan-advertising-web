@@ -3,7 +3,7 @@ import Dropdown, { DropdownProps } from 'antd/es/dropdown/dropdown';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { IconButton } from '@/components/icon';
+import { IconButton, Iconify } from '@/components/icon';
 import { useLoginStateContext } from '@/pages/sys/login/providers/LoginStateProvider';
 import { useRouter } from '@/router/hooks';
 import { useUserInfo, useUserActions } from '@/store/userStore';
@@ -14,7 +14,7 @@ import { useThemeToken } from '@/theme/hooks';
  */
 export default function AccountDropdown() {
   const { replace } = useRouter();
-  const { username, email, avatar } = useUserInfo();
+  const { username, email } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
   const { backToLogin } = useLoginStateContext();
   const { t } = useTranslation();
@@ -30,7 +30,7 @@ export default function AccountDropdown() {
       replace('/login');
     }
   };
-  const { colorBgElevated, borderRadiusLG, boxShadowSecondary } = useThemeToken();
+  const { colorBgElevated, borderRadiusLG, boxShadowSecondary, colorPrimaryText } = useThemeToken();
 
   const contentStyle: React.CSSProperties = {
     backgroundColor: colorBgElevated,
@@ -64,7 +64,15 @@ export default function AccountDropdown() {
   return (
     <Dropdown menu={{ items }} trigger={['click']} dropdownRender={dropdownRender}>
       <IconButton className="h-10 w-10 transform-none px-0 hover:scale-105">
-        <img className="h-8 w-8 rounded-full" src={avatar} alt="" />
+        <div
+          className="flex h-9 w-9 flex-none items-center justify-center rounded"
+          style={{
+            backgroundColor: 'transparent',
+            border: `1px solid ${colorPrimaryText}`,
+          }}
+        >
+          <Iconify icon="tdesign:user" color={colorPrimaryText} size={20} />
+        </div>
       </IconButton>
     </Dropdown>
   );
