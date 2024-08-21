@@ -3,6 +3,7 @@ import { App } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
 
+import { ADMIN_ROLE } from '@/_mock/assets';
 import userService, { SignInReq } from '@/api/services/userService';
 import { APP_HOMEPAGE } from '@/utils/contant';
 import { getItem, removeItem, setItem } from '@/utils/storage';
@@ -57,9 +58,14 @@ export const useSignIn = () => {
   const signIn = async (data: SignInReq) => {
     try {
       const res = await signInMutation.mutateAsync(data);
-      const { user, accessToken, refreshToken } = res;
-      setUserToken({ accessToken, refreshToken });
-      setUserInfo(user);
+      const { access_token: accessToken, token_type: tokenType } = res;
+      setUserToken({ access_token: accessToken, token_type: tokenType });
+      setUserInfo({
+        id: 'b34719e1-ce46-457e-9575-99505ecee828',
+        email: '',
+        username: data.username,
+        permissions: ADMIN_ROLE.permission,
+      });
       navigatge(APP_HOMEPAGE, { replace: true });
     } catch (err) {
       message.warning({
