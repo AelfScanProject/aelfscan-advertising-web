@@ -20,7 +20,10 @@ function LoginForm() {
   const handleFinish = async ({ username, password }: SignInReq) => {
     setLoading(true);
     try {
-      await signIn({ username, password });
+      await signIn({
+        username,
+        password,
+      });
     } finally {
       setLoading(false);
     }
