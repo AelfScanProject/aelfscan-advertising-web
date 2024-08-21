@@ -3,8 +3,9 @@ import { TablePaginationConfig } from 'antd';
 import { BasicStatus, PermissionType } from './enum';
 
 export interface UserToken {
-  accessToken?: string;
-  refreshToken?: string;
+  access_token?: string;
+  token_type?: string;
+  expires_in?: string;
 }
 
 export interface UserInfo {

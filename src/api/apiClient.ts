@@ -16,7 +16,8 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = 'Bearer Token';
+    const { userToken } = userStore.getState();
+    config.headers.Authorization = `${userToken.token_type} ${userToken.access_token}`;
     return config;
   },
   (error) => {
@@ -27,6 +28,13 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (res: AxiosResponse<Result>) => {
     console.log(res, 'resresF');
+    if (res.config.url === '/connect/token') {
+      if (!res.data?.access_token) {
+        throw new Error(t('sys.api.apiRequestFailed'));
+      } else {
+        return res.data;
+      }
+    }
     if (!res.data) throw new Error(t('sys.api.apiRequestFailed'));
 
     const { status, data, message, code } = res.data;
